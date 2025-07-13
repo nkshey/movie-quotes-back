@@ -13,7 +13,12 @@ class VerifyEmail extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct() {}
+    public $locale;
+
+    public function __construct(string $locale = 'en')
+    {
+        $this->locale = $locale;
+    }
 
     public function via($notifiable): array
     {
@@ -46,14 +51,12 @@ class VerifyEmail extends Notification implements ShouldQueue
         $parsedUrl = parse_url($backendUrl);
         parse_str($parsedUrl['query'], $queryParams);
 
-        $locale = app()->getLocale();
-
         $verificationUrl = config('app.frontend_url') . '/verify/email?' . http_build_query([
             'id'        => $notifiable->getKey(),
             'hash'      => sha1($notifiable->getEmailForVerification()),
             'expires'   => $queryParams['expires'],
             'signature' => $queryParams['signature'],
-            'locale'    => $locale,
+            'locale'    => $this->locale,
         ]);
 
         return $verificationUrl;
