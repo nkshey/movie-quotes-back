@@ -51,7 +51,7 @@ class VerifyEmail extends Notification implements ShouldQueue
         $parsedUrl = parse_url($backendUrl);
         parse_str($parsedUrl['query'], $queryParams);
 
-        $verificationUrl = config('app.frontend_url') . '/verify/email?' . http_build_query([
+        $verificationUrl = config('app.frontend_url') . '/verify-email?' . http_build_query([
             'id'        => $notifiable->getKey(),
             'hash'      => sha1($notifiable->getEmailForVerification()),
             'expires'   => $queryParams['expires'],

@@ -36,7 +36,7 @@ class GoogleAuthController extends Controller
         $locale = session('locale', 'en');
 
         return response()->json([
-            'status' => 'Google authentication successful',
+            'message' => 'Google authentication successful',
             'locale' => $locale,
         ]);
     }

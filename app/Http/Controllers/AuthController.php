@@ -41,11 +41,12 @@ class AuthController extends Controller
 
         if (! Auth::user()->hasVerifiedEmail()) {
             Auth::logout();
-            return response()->json(['message' => __('auth.login_unverified')], 403);
+
+            return response()->json(['message' => __('auth.email_not_verified')], 403);
         }
 
         $request->session()->regenerate();
 
-        return response()->json(['status' => 'Login successful']);
+        return response()->json(['message' => 'Login successful']);
     }
 }
