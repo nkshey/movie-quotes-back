@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(AuthController::class)->group(function () {
     Route::middleware('guest')->group(function () {
         Route::post('/register', 'register');
+        Route::post('/login', 'login');
     });
 });
 
@@ -18,4 +19,4 @@ Route::controller(GoogleAuthController::class)->middleware('guest')->group(funct
 
 Route::get('/email/verify/{id}/{hash}', [EmailController::class, 'verify'])
     ->name('verification.verify')
-    ->middleware('signed', 'guest');
+    ->middleware(['signed', 'guest']);
