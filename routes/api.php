@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->group(function () {
@@ -26,6 +27,10 @@ Route::controller(PasswordResetController::class)->middleware('guest')->group(fu
     Route::post('/forgot-password', 'forgotPassword')->name('password.email');
     Route::post('/reset-password', 'resetPassword')->name('password.update');
     Route::post('/validate-reset-token', 'validateResetToken');
+});
+
+Route::controller(UserController::class)->middleware('auth:sanctum')->group(function () {
+    Route::get('/user', 'getUser');
 });
 
 Route::get('/email/verify/{id}/{hash}', [EmailController::class, 'verify'])
