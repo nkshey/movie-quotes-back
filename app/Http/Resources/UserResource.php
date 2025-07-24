@@ -13,7 +13,7 @@ class UserResource extends JsonResource
             'id'          => $this->id,
             'email'       => $this->email,
             'username'    => $this->username,
-            'avatar'      => $this->avatar,
+            'avatar'      => $this->getFirstMediaUrl('avatars') ?: null,
             'google_user' => (bool) $this->google_id,
         ];
     }
