@@ -9,9 +9,9 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'sometimes|lowercase|alpha_num|min:3|max:15|unique:users,username',
-            'password' => 'sometimes|lowercase|alpha_num|confirmed|min:8|max:15',
-            'avatar'   => 'sometimes|image',
+            'username' => ['sometimes', 'lowercase', 'alpha_num', 'min:3', 'max:15', 'unique:users,username'],
+            'password' => ['sometimes', 'lowercase', 'alpha_num', 'confirmed', 'min:8', 'max:15'],
+            'avatar'   => ['sometimes', 'image'],
         ];
     }
 }
