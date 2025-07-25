@@ -40,4 +40,9 @@ class User extends Authenticatable implements CanResetPassword, HasMedia, MustVe
         $locale = app()->getLocale();
         $this->notify(new PasswordReset($token, $locale));
     }
+
+    public function getAvatarAttribute()
+    {
+        return $this->getFirstMediaUrl('avatars') ?: null;
+    }
 }
