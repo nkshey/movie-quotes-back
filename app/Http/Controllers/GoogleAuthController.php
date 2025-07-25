@@ -27,9 +27,14 @@ class GoogleAuthController extends Controller
         ], [
             'username'          => $googleUser->name,
             'email'             => $googleUser->email,
-            'avatar'            => $googleUser->avatar,
             'email_verified_at' => now(),
         ]);
+
+        if ($googleUser->avatar) {
+            $user->clearMediaCollection('avatars');
+            $user->addMediaFromUrl($googleUser->avatar)
+                ->toMediaCollection('avatars');
+        }
 
         Auth::login($user);
 
@@ -37,7 +42,7 @@ class GoogleAuthController extends Controller
 
         return response()->json([
             'message' => 'Google authentication successful',
-            'locale' => $locale,
+            'locale'  => $locale,
         ]);
     }
 }

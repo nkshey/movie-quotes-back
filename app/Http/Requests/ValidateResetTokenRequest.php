@@ -9,8 +9,8 @@ class ValidateResetTokenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'token' => 'required|string',
-            'email' => 'required|email|exists:users,email',
+            'token' => ['required', 'string'],
+            'email' => ['required', 'email', 'exists:users,email'],
         ];
     }
 }
