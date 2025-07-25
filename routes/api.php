@@ -31,7 +31,7 @@ Route::controller(PasswordResetController::class)->middleware('guest')->group(fu
 
 Route::controller(UserController::class)->middleware('auth:sanctum')->group(function () {
     Route::get('/user', 'getUser');
-    Route::post('/update-user', 'updateUser');
+    Route::patch('/user', 'updateUser');
 });
 
 Route::get('/email/verify/{id}/{hash}', [EmailController::class, 'verify'])
