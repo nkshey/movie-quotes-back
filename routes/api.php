@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +34,15 @@ Route::controller(PasswordResetController::class)->middleware('guest')->group(fu
 Route::controller(UserController::class)->middleware('auth:sanctum')->group(function () {
     Route::get('/user', 'getUser')->name('user.get');
     Route::patch('/user', 'updateUser')->name('user.update');
+});
+
+Route::controller(GenreController::class)->middleware('auth:sanctum')->group(function () {
+    Route::get('/genres', 'index')->name('genres.index');
+});
+
+Route::controller(MovieController::class)->middleware('auth:sanctum')->group(function () {
+    Route::get('/movies', 'index')->name('movies.index');
+    Route::post('/movies', 'store')->name('movies.store');
 });
 
 Route::get('/email/verify/{id}/{hash}', [EmailController::class, 'verify'])
