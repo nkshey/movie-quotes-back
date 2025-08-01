@@ -9,6 +9,8 @@ class Genre extends Model
 {
     public $timestamps = false;
 
+    protected $hidden = ['pivot'];
+
     protected $casts = [
         'name' => 'array',
     ];

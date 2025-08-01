@@ -42,6 +42,7 @@ Route::controller(GenreController::class)->middleware('auth:sanctum')->group(fun
 
 Route::controller(MovieController::class)->middleware('auth:sanctum')->group(function () {
     Route::get('/movies', 'index')->name('movies.index');
+    Route::get('/movies/{id}', 'show')->name('movies.show');
     Route::post('/movies', 'store')->name('movies.store');
 });
 
