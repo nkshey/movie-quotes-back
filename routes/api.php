@@ -44,6 +44,8 @@ Route::controller(MovieController::class)->middleware('auth:sanctum')->group(fun
     Route::get('/movies', 'index')->name('movies.index');
     Route::get('/movies/{id}', 'show')->name('movies.show');
     Route::post('/movies', 'store')->name('movies.store');
+    Route::patch('/movies/{id}', 'update')->name('movies.update');
+    Route::delete('/movies/{id}', 'destroy')->name('movies.destroy');
 });
 
 Route::get('/email/verify/{id}/{hash}', [EmailController::class, 'verify'])
