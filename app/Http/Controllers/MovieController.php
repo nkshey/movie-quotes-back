@@ -9,6 +9,7 @@ use App\Http\Resources\MovieResource;
 use App\Models\Movie;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class MovieController extends Controller
 {
@@ -19,9 +20,9 @@ class MovieController extends Controller
         return response()->json(MovieListResource::collection($movies));
     }
 
-    public function show(int $id): JsonResponse
+    public function show(Movie $movie): JsonResponse
     {
-        $movie = Auth::user()->movies()->findOrFail($id);
+        Gate::authorize('view', $movie);
 
         return response()->json(new MovieResource($movie));
     }
@@ -48,10 +49,10 @@ class MovieController extends Controller
         return response()->json(['message' => 'Movie stored successfully']);
     }
 
-    public function update(UpdateMovieRequest $request, int $id): JsonResponse
+    public function update(UpdateMovieRequest $request, Movie $movie): JsonResponse
     {
-        $user = Auth::user();
-        $movie = $user->movies()->findOrFail($id);
+        Gate::authorize('update', $movie);
+
         $data = $request->validated();
 
         $movie->update([
@@ -71,10 +72,9 @@ class MovieController extends Controller
         return response()->json(['message' => 'Movie updated successfully']);
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(Movie $movie): JsonResponse
     {
-        $user = Auth::user();
-        $movie = $user->movies()->findOrFail($id);
+        Gate::authorize('delete', $movie);
 
         $movie->clearMediaCollection('posters');
         $movie->genres()->detach();
