@@ -13,7 +13,7 @@ return [
     ['name' => ['en' => 'Fantasy',      'ka' => 'ფენტეზი']],
     ['name' => ['en' => 'History',      'ka' => 'ისტორია']],
     ['name' => ['en' => 'Horror',       'ka' => 'საშინელებათა']],
-    ['name' => ['en' => 'Musical',      'ka' => 'მუსიკალური']],
+    ['name' => ['en' => 'Musical',      'ka' => 'მიუზიკლი']],
     ['name' => ['en' => 'Mystery',      'ka' => 'მისტიკა']],
     ['name' => ['en' => 'Romance',      'ka' => 'რომანტიკა']],
     ['name' => ['en' => 'Sci-Fi',       'ka' => 'ფანტასტიკა']],
