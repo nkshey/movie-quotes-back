@@ -6,6 +6,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,10 @@ Route::controller(MovieController::class)->middleware('auth:sanctum')->group(fun
     Route::post('/movies', 'store')->name('movies.store');
     Route::patch('/movies/{movie}', 'update')->name('movies.update');
     Route::delete('/movies/{movie}', 'destroy')->name('movies.destroy');
+});
+
+Route::controller(QuoteController::class)->middleware('auth:sanctum')->group(function () {
+    Route::post('/quotes', 'store')->name('quotes.store');
 });
 
 Route::get('/email/verify/{id}/{hash}', [EmailController::class, 'verify'])
