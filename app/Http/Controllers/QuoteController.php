@@ -6,6 +6,7 @@ use App\Http\Requests\StoreQuoteRequest;
 use App\Models\Quote;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class QuoteController extends Controller
 {
@@ -25,5 +26,15 @@ class QuoteController extends Controller
         }
 
         return response()->json(['message' => 'Quote stored successfully']);
+    }
+
+    public function destroy(Quote $quote): JsonResponse
+    {
+        Gate::authorize('delete', $quote);
+
+        $quote->clearMediaCollection('quotes');
+        $quote->delete();
+
+        return response()->json(['message' => 'Quote deleted successfully']);
     }
 }

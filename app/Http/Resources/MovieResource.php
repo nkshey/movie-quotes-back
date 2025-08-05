@@ -16,7 +16,8 @@ class MovieResource extends JsonResource
             'director'    => $this->director,
             'year'        => $this->year,
             'image'       => $this->image,
-            'genres'      => $this->genres,
+            'genres'      => $this->whenLoaded('genres'),
+            'quotes'      => QuoteResource::collection($this->whenLoaded('quotes')),
         ];
     }
 }
