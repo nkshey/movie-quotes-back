@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuoteRequest;
-use App\Http\Resources\QuoteResource;
-use App\Models\Movie;
 use App\Models\Quote;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -12,13 +10,6 @@ use Illuminate\Support\Facades\Gate;
 
 class QuoteController extends Controller
 {
-    public function quotesByMovie(Movie $movie): JsonResponse
-    {
-        $quotes = Quote::where('movie_id', $movie->id)->get();
-
-        return response()->json(QuoteResource::collection($quotes));
-    }
-
     public function store(StoreQuoteRequest $request): JsonResponse
     {
         $user = Auth::user();
