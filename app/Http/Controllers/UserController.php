@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function getUser(): JsonResponse
+    public function show(): JsonResponse
     {
         return response()->json(new UserResource(Auth::user()));
     }
 
-    public function updateUser(UpdateUserRequest $request): JsonResponse
+    public function update(UpdateUserRequest $request): JsonResponse
     {
         $user = Auth::user();
         $data = $request->validated();
