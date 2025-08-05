@@ -57,6 +57,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::controller(QuoteController::class)->group(function () {
+        Route::get('/quotes/{movie}', 'quotesByMovie')->name('quotes.quotesByMovie');
         Route::post('/quotes', 'store')->name('quotes.store');
+        Route::delete('/quotes/{quote}', 'destroy')->name('quotes.destroy');
     });
 });
