@@ -58,6 +58,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(QuoteController::class)->group(function () {
         Route::post('/quotes', 'store')->name('quotes.store');
+        Route::patch('/quotes/{quote}', 'update')->name('quotes.update');
         Route::delete('/quotes/{quote}', 'destroy')->name('quotes.destroy');
     });
 });

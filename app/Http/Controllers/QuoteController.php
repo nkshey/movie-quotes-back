@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuoteRequest;
+use App\Http\Requests\UpdateQuoteRequest;
 use App\Models\Quote;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,22 @@ class QuoteController extends Controller
         }
 
         return response()->json(['message' => 'Quote stored successfully']);
+    }
+
+    public function update(UpdateQuoteRequest $request, Quote $quote): JsonResponse
+    {
+        Gate::authorize('update', $quote);
+
+        $data = $request->validated();
+
+        $quote->update(['text' => $data['text']]);
+
+        if ($request->hasFile('image')) {
+            $quote->clearMediaCollection('quotes');
+            $quote->addMediaFromRequest('image')->toMediaCollection('quotes');
+        }
+
+        return response()->json(['message' => 'Quote updated successfully']);
     }
 
     public function destroy(Quote $quote): JsonResponse

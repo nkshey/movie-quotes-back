@@ -15,7 +15,7 @@ class MovieController extends Controller
 {
     public function index(): JsonResponse
     {
-        $movies = Auth::user()->movies;
+        $movies = Auth::user()->movies()->withCount('quotes')->get();
 
         return response()->json(MovieListResource::collection($movies));
     }
