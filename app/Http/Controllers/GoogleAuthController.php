@@ -33,8 +33,7 @@ class GoogleAuthController extends Controller
             ]);
         }
 
-        if ($googleUser->avatar) {
-            $user->clearMediaCollection('avatars');
+        if ($googleUser->avatar && $user->getMedia('avatars')->isEmpty()) {
             $user->addMediaFromUrl($googleUser->avatar)
                 ->toMediaCollection('avatars');
         }
