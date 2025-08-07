@@ -4,13 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Requests\UpdateQuoteRequest;
+use App\Http\Resources\QuoteCollection;
 use App\Models\Quote;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class QuoteController extends Controller
 {
+    public function index(): JsonResponse
+    {
+        $quotes =  QueryBuilder::for(Quote::class)
+            ->with(['user', 'movie'])
+            ->paginate(9);
+
+        return response()->json(new QuoteCollection($quotes));
+    }
+
     public function store(StoreQuoteRequest $request): JsonResponse
     {
         $user = Auth::user();

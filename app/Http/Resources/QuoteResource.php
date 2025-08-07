@@ -13,7 +13,8 @@ class QuoteResource extends JsonResource
             'id'       => $this->id,
             'text'     => $this->text,
             'image'    => $this->image,
-            'movie_id' => $this->movie_id,
+            'movie'    => new MovieSummaryResource($this->whenLoaded('movie')),
+            'user'     => new UserResource($this->whenLoaded('user'))
         ];
     }
 }
