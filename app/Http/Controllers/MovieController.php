@@ -24,7 +24,7 @@ class MovieController extends Controller
     {
         Gate::authorize('view', $movie);
 
-        $movie->load(['quotes', 'genres']);
+        $movie->load(['quotes.movie', 'genres']);
 
         return response()->json(new MovieResource($movie));
     }
