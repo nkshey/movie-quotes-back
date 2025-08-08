@@ -15,8 +15,8 @@ class QuoteCollection extends ResourceCollection
                 'current_page' => $this->currentPage(),
                 'last_page'    => $this->lastPage(),
                 'per_page'     => $this->perPage(),
-                'has_more'     => $this->hasMorePages()
-            ]
+                'has_more'     => $this->hasMorePages(),
+            ],
         ];
     }
 }
