@@ -12,7 +12,7 @@ class MovieSummaryResource extends JsonResource
         return [
             'id'    => $this->id,
             'title' => $this->title,
-            'year'  => $this->year
+            'year'  => $this->year,
         ];
     }
 }

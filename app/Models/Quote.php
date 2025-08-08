@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Quote extends Model implements HasMedia
 {
     use InteractsWithMedia;
-
-    public $timestamps = false;
 
     protected $casts = [
         'text' => 'array',
@@ -30,5 +29,10 @@ class Quote extends Model implements HasMedia
     public function movie(): BelongsTo
     {
         return $this->belongsTo(Movie::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }

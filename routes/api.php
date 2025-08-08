@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GoogleAuthController;
@@ -61,5 +62,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/quotes', 'store')->name('quotes.store');
         Route::patch('/quotes/{quote}', 'update')->name('quotes.update');
         Route::delete('/quotes/{quote}', 'destroy')->name('quotes.destroy');
+    });
+
+    Route::controller(CommentController::class)->group(function () {
+        Route::post('/comments', 'store')->name('comments.store');
     });
 });
