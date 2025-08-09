@@ -33,7 +33,7 @@ class Movie extends Model implements HasMedia
 
     public function quotes(): HasMany
     {
-        return $this->hasMany(Quote::class);
+        return $this->hasMany(Quote::class)->orderBy('created_at', 'desc');
     }
 
     public function getImageAttribute(): ?string

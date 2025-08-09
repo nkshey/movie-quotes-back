@@ -17,6 +17,7 @@ class QuoteController extends Controller
     {
         $quotes = QueryBuilder::for(Quote::class)
             ->with(['user', 'movie', 'comments.user'])
+            ->withCount('comments')
             ->orderBy('created_at', 'desc')
             ->paginate(9);
 
