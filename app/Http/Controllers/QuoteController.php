@@ -23,6 +23,7 @@ class QuoteController extends Controller
             ->withCount(['comments', 'likes'])
             ->search($search)
             ->latest()
+            ->orderBy('id', 'desc')
             ->paginate(9);
 
         return response()->json(new QuoteCollection($quotes));
