@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\QuoteController;
@@ -66,5 +67,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(CommentController::class)->group(function () {
         Route::post('/comments', 'store')->name('comments.store');
+    });
+
+    Route::controller(LikeController::class)->group(function () {
+        Route::post('/likes', 'store')->name('likes.store');
+        Route::delete('/likes/{quote_id}', 'destroy')->name('likes.destroy');
     });
 });

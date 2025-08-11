@@ -16,8 +16,8 @@ class QuoteController extends Controller
     public function index(): JsonResponse
     {
         $quotes = QueryBuilder::for(Quote::class)
-            ->with(['user', 'movie', 'comments.user'])
-            ->withCount('comments')
+            ->with(['user', 'movie', 'comments.user', 'likes'])
+            ->withCount(['comments', 'likes'])
             ->orderBy('created_at', 'desc')
             ->paginate(9);
 
