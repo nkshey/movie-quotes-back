@@ -7,18 +7,22 @@ use App\Http\Requests\UpdateQuoteRequest;
 use App\Http\Resources\QuoteCollection;
 use App\Models\Quote;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class QuoteController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
+        $search = $request->query('search');
+
         $quotes = QueryBuilder::for(Quote::class)
             ->with(['user', 'movie', 'comments.user', 'likes'])
             ->withCount(['comments', 'likes'])
-            ->orderBy('created_at', 'desc')
+            ->search($search)
+            ->latest()
             ->paginate(9);
 
         return response()->json(new QuoteCollection($quotes));
