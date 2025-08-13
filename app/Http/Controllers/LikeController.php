@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\QuoteLiked;
+use App\Events\QuoteUnliked;
 use App\Http\Requests\StoreLikeRequest;
 use App\Models\Like;
 use Illuminate\Http\JsonResponse;
@@ -19,6 +21,10 @@ class LikeController extends Controller
             'quote_id' => $data['quote_id'],
         ]);
 
+        $likes_count = Like::where('quote_id', $data['quote_id'])->count();
+
+        broadcast(new QuoteLiked($data['quote_id'], $likes_count))->toOthers();
+
         return response()->json(['message' => 'Liked successfully']);
     }
 
@@ -29,6 +35,10 @@ class LikeController extends Controller
         Like::where('user_id', $user->id)
             ->where('quote_id', $quote_id)
             ->delete();
+
+        $likes_count = Like::where('quote_id', $quote_id)->count();
+
+        broadcast(new QuoteUnliked($quote_id, $likes_count))->toOthers();
 
         return response()->json(['message' => 'Unliked successfully']);
     }
