@@ -29,7 +29,7 @@ class CommentController extends Controller
             $data['quote_id'],
             $comments_count,
             new CommentResource($comment)
-        ))->toOthers();
+        ));
 
         return new CommentResource($comment);
     }

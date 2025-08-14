@@ -24,6 +24,8 @@ class QuoteCommented implements ShouldBroadcast
         $this->quote_id = $quote_id;
         $this->comments_count = $comments_count;
         $this->comment = $comment;
+
+        $this->dontBroadcastToCurrentUser();
     }
 
     public function broadcastOn(): array

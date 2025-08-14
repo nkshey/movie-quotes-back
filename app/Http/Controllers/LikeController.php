@@ -23,7 +23,7 @@ class LikeController extends Controller
 
         $likes_count = Like::where('quote_id', $data['quote_id'])->count();
 
-        broadcast(new QuoteLiked($data['quote_id'], $likes_count))->toOthers();
+        broadcast(new QuoteLiked($data['quote_id'], $likes_count));
 
         return response()->json(['message' => 'Liked successfully']);
     }
@@ -38,7 +38,7 @@ class LikeController extends Controller
 
         $likes_count = Like::where('quote_id', $quote_id)->count();
 
-        broadcast(new QuoteUnliked($quote_id, $likes_count))->toOthers();
+        broadcast(new QuoteUnliked($quote_id, $likes_count));
 
         return response()->json(['message' => 'Unliked successfully']);
     }

@@ -20,6 +20,8 @@ class QuoteLiked implements ShouldBroadcast
     {
         $this->quote_id = $quote_id;
         $this->likes_count = $likes_count;
+
+        $this->dontBroadcastToCurrentUser();
     }
 
     public function broadcastOn(): array
