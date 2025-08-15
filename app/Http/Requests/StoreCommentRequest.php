@@ -13,4 +13,12 @@ class StoreCommentRequest extends FormRequest
             'quote_id' => ['required', 'integer', 'exists:quotes,id'],
         ];
     }
+
+
+    public function messages(): array
+    {
+        return [
+            'quote_id.exists' => 'quote_does_not_exist',
+        ];
+    }
 }

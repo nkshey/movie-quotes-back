@@ -12,4 +12,11 @@ class StoreLikeRequest extends FormRequest
             'quote_id' => ['required', 'exists:quotes,id'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'quote_id.exists' => 'quote_does_not_exist',
+        ];
+    }
 }
