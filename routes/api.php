@@ -7,6 +7,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\UserController;
@@ -72,5 +73,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(LikeController::class)->group(function () {
         Route::post('/likes', 'store')->name('likes.store');
         Route::delete('/likes/{quote_id}', 'destroy')->name('likes.destroy');
+    });
+
+    Route::controller(NotificationController::class)->group(function () {
+        Route::get('/notifications', 'index')->name('notifications.index');
+        Route::patch('/notifications/mark-all-read', 'markAllAsRead')->name('notifications.markAllAsRead');
+        Route::patch('/notifications/{notification}', 'markAsRead')->name('notifications.read');
     });
 });
