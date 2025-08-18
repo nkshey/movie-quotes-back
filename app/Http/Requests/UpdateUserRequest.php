@@ -11,7 +11,7 @@ class UpdateUserRequest extends FormRequest
         return [
             'username' => ['sometimes', 'lowercase', 'alpha_num', 'min:3', 'max:15', 'unique:users,username'],
             'password' => ['sometimes', 'lowercase', 'alpha_num', 'confirmed', 'min:8', 'max:15'],
-            'avatar'   => ['sometimes', 'image'],
+            'avatar'   => ['sometimes', 'image', 'max:' . config('validation.user_avatar_max_size')],
         ];
     }
 

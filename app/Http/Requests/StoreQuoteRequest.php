@@ -11,8 +11,8 @@ class StoreQuoteRequest extends FormRequest
         return [
             'text.en'  => ['required', 'string'],
             'text.ka'  => ['required', 'string'],
-            'image'    => ['required', 'image'],
             'movie_id' => ['required', 'integer', 'exists:movies,id'],
+            'image'    => ['required', 'image', 'max:' . config('validation.image_max_size')],
         ];
     }
 }
