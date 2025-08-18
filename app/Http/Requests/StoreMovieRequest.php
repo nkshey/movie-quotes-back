@@ -17,7 +17,7 @@ class StoreMovieRequest extends FormRequest
             'director.ka'    => ['required', 'string'],
             'year'           => ['required', 'integer'],
             'genres'         => ['required', 'array'],
-            'image'          => ['required', 'image'],
+            'image'          => ['required', 'image', 'max:' . config('validation.image_max_size')],
         ];
     }
 }

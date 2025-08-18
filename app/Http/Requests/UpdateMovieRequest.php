@@ -17,7 +17,7 @@ class UpdateMovieRequest extends FormRequest
             'director.ka'    => ['required', 'string'],
             'year'           => ['required', 'integer'],
             'genres'         => ['required', 'array'],
-            'image'          => ['sometimes', 'image'],
+            'image'          => ['sometimes', 'image', 'max:' . config('validation.image_max_size')],
         ];
     }
 }

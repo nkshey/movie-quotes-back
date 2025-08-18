@@ -11,8 +11,8 @@ class UpdateQuoteRequest extends FormRequest
         return [
             'text.en'  => ['required', 'string'],
             'text.ka'  => ['required', 'string'],
-            'image'    => ['sometimes', 'image'],
             'movie_id' => ['required', 'integer', 'exists:movies,id'],
+            'image'    => ['sometimes', 'image', 'max:' . config('validation.image_max_size')],
         ];
     }
 }
