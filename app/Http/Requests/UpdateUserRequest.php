@@ -14,4 +14,11 @@ class UpdateUserRequest extends FormRequest
             'avatar'   => ['sometimes', 'image'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'username.unique' => __('validation.username_unique'),
+        ];
+    }
 }
