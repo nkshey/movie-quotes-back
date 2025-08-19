@@ -42,7 +42,7 @@ class LikeController extends Controller
             broadcast(new NotificationEvent($quote->user_id));
         }
 
-        return response()->json(['message' => 'Liked successfully']);
+        return response()->json(['message' => 'Liked successfully'], 201);
     }
 
     public function destroy(int $quote_id): JsonResponse
