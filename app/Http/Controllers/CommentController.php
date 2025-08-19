@@ -47,6 +47,6 @@ class CommentController extends Controller
             broadcast(new NotificationEvent($quote->user_id));
         }
 
-        return response()->json(['message' => 'Commented successfully']);
+        return response()->json(['message' => 'Commented successfully'], 201);
     }
 }
