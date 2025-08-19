@@ -9,10 +9,12 @@ class GenreSeeder extends Seeder
 {
     public function run(): void
     {
-        $genres = config('genres');
+        if (Genre::count() === 0) {
+            $genres = config('genres');
 
-        foreach ($genres as $genre) {
-            Genre::create($genre);
+            foreach ($genres as $genre) {
+                Genre::create($genre);
+            }
         }
     }
 }
