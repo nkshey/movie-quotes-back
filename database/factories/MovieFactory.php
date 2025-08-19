@@ -2,15 +2,17 @@
 
 namespace Database\Factories;
 
+use App\FactoryHelpers;
 use App\Models\Movie;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MovieFactory extends Factory
 {
+    use FactoryHelpers;
+
     public function definition(): array
     {
-        $randomUser = User::inRandomOrder()->first() ?? User::factory();
+        $randomUser = $this->getRandomUser();
 
         return [
             'user_id' => $randomUser,

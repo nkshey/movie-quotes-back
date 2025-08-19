@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Movie;
+use App\FactoryHelpers;
 use App\Models\Quote;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QuoteFactory extends Factory
 {
+    use FactoryHelpers;
+
     public function definition(): array
     {
-        $randomUser = User::inRandomOrder()->first() ?? User::factory();
-        $randomMovie = Movie::inRandomOrder()->first() ?? Movie::factory();
+        $randomUser = $this->getRandomUser();
+        $randomMovie = $this->getRandomMovie();
 
         return [
             'user_id'  => $randomUser,

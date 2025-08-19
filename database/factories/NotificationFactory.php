@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Quote;
-use App\Models\User;
+use App\FactoryHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NotificationFactory extends Factory
 {
+    use FactoryHelpers;
+
     public function definition(): array
     {
-        $randomUser = User::inRandomOrder()->first() ?? User::factory();
-        $randomSender = User::where('id', '!=', $randomUser->id)->inRandomOrder()->first() ?? User::factory();
-        $randomQuote = Quote::inRandomOrder()->first() ?? Quote::factory();
+        $randomUser = $this->getRandomUser();
+        $randomSender = $this->getRandomSender($randomUser->id);
+        $randomQuote = $this->getRandomQuote();
 
         return [
             'user_id'   => $randomUser,
