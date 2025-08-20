@@ -14,4 +14,12 @@ class RegisterRequest extends FormRequest
             'password' => ['required', 'lowercase', 'alpha_num', 'confirmed', 'min:8', 'max:15'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'username.unique' => __('validation.username_unique'),
+            'email.unique'    => __('validation.email_unique'),
+        ];
+    }
 }
