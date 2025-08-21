@@ -16,7 +16,7 @@ class StoreLikeRequest extends FormRequest
     public function messages()
     {
         return [
-            'quote_id.exists' => 'quote_does_not_exist',
+            'quote_id.exists' => 'Quote does not exist',
         ];
     }
 }
