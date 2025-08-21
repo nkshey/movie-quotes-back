@@ -18,7 +18,7 @@ class StoreCommentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'quote_id.exists' => 'quote_does_not_exist',
+            'quote_id.exists' => 'Quote does not exist',
         ];
     }
 }
