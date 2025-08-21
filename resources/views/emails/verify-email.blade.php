@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify your email address</title>
-     <style>
+    <title>{{ __('emails.verify_title') }}</title>
+    <style>
       @media only screen and (min-width: 768px) {
         .greeting {
           padding-bottom: 32px !important;
@@ -27,13 +27,13 @@
 
           <tr>
             <td align="left" class="greeting" style="font-size:16px; color:#ffffff; line-height:24px; padding:0 0 24px 0;">
-              Hola {{ $username }}!
+              {{ __('emails.greeting') }}, {{ $username }}!
             </td>
           </tr>
 
           <tr>
             <td align="left" style="font-size:16px; color:#ffffff; line-height:24px; padding:0 0 24px 0;">
-              Thanks for joining Movie Quotes! We really appreciate it. Please click the button below to verify your account:
+              {{ __('emails.verify_message') }}:
             </td>
           </tr>
 
@@ -41,14 +41,14 @@
             <td align="left" style="padding: 0 0 40px 0;">
               <a href={{ $url }}
                 style="display:inline-block; background:#E31221; color:#ffffff; font-size:16px; text-decoration:none; height:38px; line-height:38px; padding:0 14px; border-radius:4px;">
-                Verify account
+                {{ __('emails.verify_button') }}
               </a>
             </td>
           </tr>
 
           <tr>
             <td align="left" class="alt-text" style="font-size:16px; color:#ffffff; line-height:24px; padding:0 0 16px 0;">
-              If clicking doesn't work, you can try copying and pasting it to your browser:
+             {{ __('emails.alt_text') }}:
             </td>
           </tr>
 
@@ -63,14 +63,14 @@
 
           <tr>
             <td align="left" style="font-size:16px; color:#ffffff; line-height:24px; padding:0 0 24px 0;">
-              If you have any problems, please contact us:
+              {{ __('emails.verify_support_message') }}:
               <a href="mailto:support@moviequotes.ge" style="color:#ffffff; text-decoration:none;">support@moviequotes.ge</a>
             </td>
           </tr>
 
           <tr>
             <td align="left" style="font-size:16px; color:#ffffff; line-height:24px;">
-              MovieQuotes Crew
+              {{ __('emails.crew_signature') }}
             </td>
           </tr>
 

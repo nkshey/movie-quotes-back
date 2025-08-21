@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify your email address</title>
-     <style>
+    <title>{{ __('emails.reset_title') }}</title>
+    <style>
       @media only screen and (min-width: 768px) {
         .greeting {
           padding-bottom: 32px !important;
@@ -27,13 +27,13 @@
 
           <tr>
             <td align="left" class="greeting" style="font-size:16px; color:#ffffff; line-height:24px; padding:0 0 24px 0;">
-              Hola {{ $username }}!
+              {{ __('emails.greeting') }}, {{ $username }}!
             </td>
           </tr>
 
           <tr>
             <td align="left" style="font-size:16px; color:#ffffff; line-height:24px; padding:0 0 24px 0;">
-              We received a request to reset your password for your Movie Quotes account. Please click the button below to set a new password:
+              {{ __('emails.reset_message') }}:
             </td>
           </tr>
 
@@ -41,14 +41,14 @@
             <td align="left" style="padding: 0 0 40px 0;">
               <a href={{ $url }}
                 style="display:inline-block; background:#E31221; color:#ffffff; font-size:16px; text-decoration:none; height:38px; line-height:38px; padding:0 14px; border-radius:4px;">
-                Reset password
+                {{ __('emails.reset_button') }}
               </a>
             </td>
           </tr>
 
           <tr>
             <td align="left" class="alt-text" style="font-size:16px; color:#ffffff; line-height:24px; padding:0 0 16px 0;">
-              If clicking doesn't work, you can try copying and pasting it to your browser:
+              {{ __('emails.alt_text') }}:
             </td>
           </tr>
 
@@ -63,14 +63,14 @@
 
           <tr>
             <td align="left" style="font-size:16px; color:#ffffff; line-height:24px; padding:0 0 24px 0;">
-              If you did not request a password reset, you can safely ignore this email. If you have any problems, please contact us:
+             {{ __('emails.reset_support_message') }}:
               <a href="mailto:support@moviequotes.ge" style="color:#ffffff; text-decoration:none;">support@moviequotes.ge</a>
             </td>
           </tr>
 
           <tr>
             <td align="left" style="font-size:16px; color:#ffffff; line-height:24px;">
-              MovieQuotes Crew
+               {{ __('emails.crew_signature') }}
             </td>
           </tr>
 
