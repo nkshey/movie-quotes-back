@@ -65,7 +65,7 @@ class PasswordResetController extends Controller
         $status = Password::getRepository()->exists($user, $token);
 
         if (! $status) {
-            return response()->json(['status' => 'invalid_link_or_expired_token'], 422);
+            return response()->json(['status' => 'invalid_password_link_or_expired_token'], 422);
         }
 
         return response()->json(['message' => 'Reset password validated successfully']);
