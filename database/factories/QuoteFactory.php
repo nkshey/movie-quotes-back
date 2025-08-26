@@ -28,7 +28,7 @@ class QuoteFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Quote $quote) {
-            $quote->addMedia(storage_path('app/public/placeholder.png'))
+            $quote->addMedia(public_path('assets/placeholder.png'))
                 ->preservingOriginal()
                 ->toMediaCollection('quotes');
         });

@@ -7,9 +7,17 @@ use App\Events\QuoteUnliked;
 use App\Models\Quote;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Storage;
 
 uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    Storage::fake('public');
+    $fakeImage = UploadedFile::fake()->image('placeholder.png', 100, 100);
+    Storage::disk('public')->putFileAs('assets', $fakeImage, 'placeholder.png');
+});
 
 test('authenticated user can join quote-like channel', function () {
     $user = User::factory()->create();
