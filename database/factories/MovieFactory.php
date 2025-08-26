@@ -35,7 +35,7 @@ class MovieFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Movie $movie) {
-            $movie->addMedia(storage_path('app/public/placeholder.png'))
+            $movie->addMedia(public_path('assets/placeholder.png'))
                 ->preservingOriginal()
                 ->toMediaCollection('posters');
         });
