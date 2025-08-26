@@ -15,6 +15,10 @@
 ## Prerequisites
 
 -   <img src="readme/assets/icons/php.svg" width="36"/> *PHP@8.3.x and up*
+    -   **PHP GD extension** is required to run the test suite.
+        -   Ubuntu/Debian: `sudo apt-get install php-gd`
+        -   macOS (Homebrew): `brew install php-gd`
+        -   Other systems: see PHP documentation.
 -   <img src="readme/assets/icons/mysql.svg" width="36"/> *MYSQL@8.x and up*
 -   <img src="readme/assets/icons/npm.svg" width="36"/> *NPM@11.x and up*
 -   <img src="readme/assets/icons/composer.svg" width="36"/> *Composer@2.8.x and up*
