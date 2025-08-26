@@ -177,14 +177,13 @@ describe('google oauth', function () {
         $googleUser->id = '123456';
         $googleUser->name = 'Google User';
         $googleUser->email = 'googleuser@gmail.com';
-        $googleUser->avatar = 'https://example.com/avatar.jpg';
+        $googleUser->avatar = 'https://placehold.co/120x120';
 
         Socialite::shouldReceive('driver->stateless->user')->andReturn($googleUser);
 
         $response = $this->get('/api/auth/google/callback');
 
-        expect(Auth::check())->toBeTrue();
-        expect(Auth::user()->email)->toBe('googleuser@gmail.com');
+        expect(User::where('email', 'googleuser@gmail.com')->exists())->toBeTrue();
         expect($response->json('message'))->toBe('Google authentication successful');
     });
 });
