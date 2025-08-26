@@ -21,4 +21,21 @@ class EmailController extends Controller
 
         return response()->json(['status' => 'email_verification_successful'], 200);
     }
+
+    public function resend(User $user): JsonResponse
+    {
+        if ($user->hasVerifiedEmail()) {
+            return response()->json(['status' => 'email_already_verified'], 409);
+        }
+
+        $user->sendEmailVerificationNotification();
+
+        return response()->json(
+            [
+                'status' => 'verification_link_resent',
+                'email' => $user->email
+            ],
+            200
+        );
+    }
 }
