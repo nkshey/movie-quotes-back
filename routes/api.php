@@ -34,7 +34,7 @@ Route::middleware('guest')->group(function () {
         Route::get('/email/verify/{id}/{hash}', 'verify')
             ->name('verification.verify')
             ->middleware('signed');
-        Route::post('/email/resend/{id}', 'resend')
+        Route::post('/email/resend/{user}', 'resend')
             ->middleware('throttle:6,1')
             ->name('verification.send');
     });
